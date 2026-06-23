@@ -6,6 +6,7 @@ import { signInWithEmail } from "@/lib/firebase-auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { useCart } from "@/components/cart/cart-provider";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -13,10 +14,11 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { signIn, user } = useAuth();
+  const { itemCount } = useCart();
   const router = useRouter();
 
   if (user) {
-    router.push("/account/orders");
+    router.push(itemCount > 0 ? "/checkout" : "/account/orders");
     return null;
   }
 
@@ -27,7 +29,7 @@ export default function LoginPage() {
 
     try {
       await signInWithEmail(email, password);
-      router.push("/account/orders");
+      router.push(itemCount > 0 ? "/checkout" : "/account/orders");
     } catch (err: any) {
       setError(err.message || "Failed to sign in. Please check your credentials.");
       setIsSubmitting(false);
@@ -37,7 +39,7 @@ export default function LoginPage() {
   const handleGoogleSignIn = async () => {
     try {
       await signIn();
-      router.push("/account/orders");
+      router.push(itemCount > 0 ? "/checkout" : "/account/orders");
     } catch (err: any) {
       setError(err.message || "Failed to sign in with Google.");
     }

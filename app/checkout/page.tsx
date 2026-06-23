@@ -7,6 +7,8 @@ import { useAuth } from "@/components/auth-provider";
 import { QRCodeSVG } from "qrcode.react";
 import dynamic from "next/dynamic";
 
+import { getUserProfile } from "@/lib/firestore-profile";
+
 const MapPicker = dynamic(() => import("@/components/map-picker"), { ssr: false });
 
 function formatMoney(value: number) {
@@ -47,14 +49,24 @@ export default function CheckoutPage() {
     }
   }, [items, router]);
 
-  // Pre-fill email/name if logged in
+  // Pre-fill profile data if logged in
   useEffect(() => {
     if (user) {
-      setAddress(prev => ({
-        ...prev,
-        fullName: prev.fullName || user.displayName || "",
-        email: prev.email || user.email || ""
-      }));
+      getUserProfile(user.uid).then(profile => {
+        setAddress(prev => ({
+          ...prev,
+          fullName: profile?.fullName || user.displayName || "",
+          phone: profile?.phone || "",
+          email: user.email || "",
+          street: profile?.street || "",
+          city: profile?.city || "",
+          state: profile?.state || "",
+          pincode: profile?.pincode || ""
+        }));
+        if (profile?.coordinates) {
+          setPosition(profile.coordinates);
+        }
+      });
     }
   }, [user]);
 

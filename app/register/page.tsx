@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+import { useCart } from "@/components/cart/cart-provider";
+
 export default function RegisterPage() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,10 +16,11 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { signIn, user } = useAuth();
+  const { itemCount } = useCart();
   const router = useRouter();
 
   if (user) {
-    router.push("/account/orders");
+    router.push(itemCount > 0 ? "/checkout" : "/account/profile");
     return null;
   }
 
@@ -28,7 +31,7 @@ export default function RegisterPage() {
 
     try {
       await registerWithEmail(email, password, fullName);
-      router.push("/account/orders");
+      router.push(itemCount > 0 ? "/checkout" : "/account/profile");
     } catch (err: any) {
       if (err.code === "auth/email-already-in-use") {
         setError("This email is already registered. Please sign in instead.");
@@ -42,7 +45,7 @@ export default function RegisterPage() {
   const handleGoogleSignIn = async () => {
     try {
       await signIn();
-      router.push("/account/orders");
+      router.push(itemCount > 0 ? "/checkout" : "/account/profile");
     } catch (err: any) {
       setError(err.message || "Failed to sign up with Google.");
     }
