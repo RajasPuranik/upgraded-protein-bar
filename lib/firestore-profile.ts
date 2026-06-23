@@ -17,7 +17,7 @@ export async function getUserProfile(userId: string): Promise<UserProfileData | 
   if (!services) return null;
 
   try {
-    const docRef = doc(services.firestore, "users", userId);
+    const docRef = doc(services.db, "users", userId);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
@@ -34,7 +34,7 @@ export async function updateUserProfile(userId: string, data: Partial<UserProfil
   const services = getFirebaseServices();
   if (!services) throw new Error("Firebase not initialized");
 
-  const docRef = doc(services.firestore, "users", userId);
+  const docRef = doc(services.db, "users", userId);
   
   await setDoc(docRef, {
     ...data,
