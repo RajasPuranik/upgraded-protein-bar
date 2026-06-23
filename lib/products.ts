@@ -22,6 +22,9 @@ export type Product = {
   badge?: string;
   description: string;
   ingredients: string[];
+  colorLight?: string;
+  colorDark?: string;
+  tagline?: string;
 };
 
 export type NutritionRow = {
