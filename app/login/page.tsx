@@ -18,7 +18,7 @@ export default function LoginPage() {
   const router = useRouter();
 
   if (user) {
-    router.push(itemCount > 0 ? "/checkout" : "/account/orders");
+    router.push(itemCount > 0 ? "/checkout" : "/account/profile");
     return null;
   }
 
@@ -29,7 +29,7 @@ export default function LoginPage() {
 
     try {
       await signInWithEmail(email, password);
-      router.push(itemCount > 0 ? "/checkout" : "/account/orders");
+      router.push(itemCount > 0 ? "/checkout" : "/account/profile");
     } catch (err: any) {
       setError(err.message || "Failed to sign in. Please check your credentials.");
       setIsSubmitting(false);
@@ -39,7 +39,7 @@ export default function LoginPage() {
   const handleGoogleSignIn = async () => {
     try {
       await signIn();
-      router.push(itemCount > 0 ? "/checkout" : "/account/orders");
+      router.push(itemCount > 0 ? "/checkout" : "/account/profile");
     } catch (err: any) {
       setError(err.message || "Failed to sign in with Google.");
     }
