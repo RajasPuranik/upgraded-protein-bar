@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FUELBAR | 25% Whey Protein Bars — No Added Sugar</title>
+  <meta name="description" content="FuelBar – 25% complete whey protein bars with no added sugar. Sweetened naturally with jaggery, dates & honey. Pan-India delivery. Healthy snacking for Gen Z."/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    /* ─── TOKENS ───────────────────────────────────────────────── */
+    :root {
+      --bg:        #080503;
+      --bg2:       #100806;
+      --surface:   #1A0E07;
+      --surface2:  #241509;
+      --hazel:     #C07835;
+      --gold:      #E8A830;
+      --amber:     #F5BE50;
+      --text:      #F0E4CC;
+      --muted:     #7A5B3E;
+      --dim:       #4A3020;
+      --border:    rgba(192,120,53,0.18);
+      --glow:      rgba(232,168,48,0.10);
+      --green:     #4CAF50;
+      --green-dim: rgba(76,175,80,0.15);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;overflow-x:hidden;line-height:1.6;}
+    a{text-decoration:none;color:inherit;}
+    button{font-family:'Nunito',sans-serif;}
+    img{max-width:100%;display:block;}
+
+    /* ─── NAV ────────────────────────────────────────────────────── */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1rem 6%;background:rgba(8,5,3,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .nav__logo{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;letter-spacing:0.08em;color:var(--amber);}
+    .nav__logo span{color:var(--text);}
+    .nav__links{display:flex;gap:2.2rem;list-style:none;}
+    .nav__links a{font-size:0.83rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);transition:color 0.2s;}
+    .nav__links a:hover{color:var(--amber);}
+    .nav__cta{background:linear-gradient(135deg,var(--hazel),var(--gold));color:var(--bg)!important;padding:0.45rem 1.3rem;border-radius:2rem;font-weight:800!important;transition:box-shadow 0.2s,opacity 0.2s!important;}
+    .nav__cta:hover{opacity:0.9;box-shadow:0 4px 20px rgba(232,168,48,0.35);}
+    .nav__ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+    .nav__ham span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;}
+
+    /* ─── MOBILE DRAWER ──────────────────────────────────────────── */
+    .nav__drawer{display:none;position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(8,5,3,0.97);z-index:300;flex-direction:column;justify-content:center;align-items:center;gap:2.5rem;}
+    .nav__drawer.open{display:flex;}
+    .nav__drawer a{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:0.1em;color:var(--text);}
+    .nav__drawer-close{position:absolute;top:1.5rem;right:6%;background:none;border:none;cursor:pointer;font-size:1.8rem;color:var(--muted);}
+
+    /* ─── HERO ────────────────────────────────────────────────────── */
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 6% 5rem;position:relative;overflow:hidden;}
+    .hero__glow{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(200,120,53,0.13) 0%,rgba(200,120,53,0.04) 45%,transparent 70%);pointer-events:none;}
+    .hero__pill{display:inline-flex;align-items:center;gap:0.5rem;background:var(--surface);border:1px solid var(--border);border-radius:2rem;padding:0.4rem 1.1rem;font-size:0.78rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--hazel);margin-bottom:1.8rem;}
+    .hero__pill-dot{width:7px;height:7px;border-radius:50%;background:var(--hazel);animation:blink 2s infinite;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+    .hero__h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.6rem,10vw,8.5rem);line-height:0.92;letter-spacing:0.02em;margin-bottom:1.5rem;}
+    .hero__h1-gold{color:var(--amber);display:block;}
+    .hero__sub{max-width:540px;font-size:1.05rem;color:var(--muted);line-height:1.75;margin-bottom:2.4rem;}
+    .hero__sub strong{color:var(--text);}
+    .hero__btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+
+    /* No-sugar badge strip */
+    .hero__badges{display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center;margin-top:1.6rem;}
+    .hbadge{display:inline-flex;align-items:center;gap:0.4rem;background:var(--surface);border:1px solid var(--border);border-radius:2rem;padding:0.32rem 0.9rem;font-size:0.75rem;font-weight:800;color:var(--muted);}
+    .hbadge--green{border-color:rgba(76,175,80,0.4);color:#6fcf72;}
+    .hbadge--gold{border-color:var(--hazel);color:var(--amber);}
+
+    /* ─── STATS STRIP ─────────────────────────────────────────────── */
+    .stats{display:flex;flex-wrap:wrap;justify-content:center;margin-top:4rem;background:var(--surface);border:1px solid var(--border);border-radius:1rem;overflow:hidden;}
+    .stats__item{padding:1.2rem 2rem;text-align:center;border-right:1px solid var(--border);flex:1;min-width:110px;}
+    .stats__item:last-child{border-right:none;}
+    .stats__num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--amber);letter-spacing:0.04em;}
+    .stats__label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.09em;font-weight:700;}
+
+    /* ─── BUTTONS ─────────────────────────────────────────────────── */
+    .btn-primary{background:linear-gradient(135deg,var(--hazel),var(--gold));color:var(--bg);padding:0.9rem 2.2rem;border:none;border-radius:3rem;font-size:0.95rem;font-weight:800;cursor:pointer;display:inline-block;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 24px rgba(232,168,48,0.22);}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,168,48,0.35);}
+    .btn-outline{background:transparent;color:var(--text);padding:0.9rem 2.2rem;border:1px solid var(--border);border-radius:3rem;font-size:0.95rem;font-weight:700;cursor:pointer;display:inline-block;transition:border-color 0.2s,background 0.2s;}
+    .btn-outline:hover{border-color:var(--hazel);background:var(--surface);}
+    .btn-wa{background:#25D366;color:#fff;padding:0.9rem 2.2rem;border:none;border-radius:3rem;font-size:0.95rem;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:0.5rem;transition:transform 0.2s,box-shadow 0.2s;}
+    .btn-wa:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,0.3);}
+
+    /* ─── SECTION HEADER ──────────────────────────────────────────── */
+    .sec-head{text-align:center;margin-bottom:3.5rem;}
+    .sec-tag{display:inline-block;font-size:0.73rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--hazel);margin-bottom:0.7rem;}
+    .sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:0.03em;line-height:1;}
+    .sec-body{color:var(--muted);font-size:0.97rem;margin-top:0.8rem;max-width:500px;margin-inline:auto;line-height:1.7;}
+
+    /* ─── FLAVOR TABS ─────────────────────────────────────────────── */
+    .flavor-tabs{display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.8rem;}
+    .ftab{background:var(--surface);border:1.5px solid var(--border);border-radius:2rem;padding:0.45rem 1.2rem;font-size:0.82rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;}
+    .ftab:hover,.ftab.active{border-color:var(--hazel);color:var(--amber);background:var(--surface2);}
+
+    /* ─── PRODUCTS ────────────────────────────────────────────────── */
+    .products{padding:6rem 6%;background:var(--bg2);}
+    .products__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:0 auto;}
+    .pcard{background:var(--surface);border:1px solid var(--border);border-radius:1.5rem;overflow:hidden;position:relative;transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;}
+    .pcard:hover{transform:translateY(-7px);box-shadow:0 20px 50px rgba(0,0,0,0.6);border-color:var(--hazel);}
+    .pcard--featured{border-color:var(--hazel);background:var(--surface2);}
+    .pcard__badge{position:absolute;top:1rem;right:1rem;background:linear-gradient(135deg,var(--hazel),var(--gold));color:var(--bg);font-size:0.68rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:0.28rem 0.75rem;border-radius:1rem;}
+    .pcard__visual{height:155px;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--surface2),var(--bg));position:relative;overflow:hidden;}
+    .pcard__visual::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 60%,var(--glow),transparent 65%);}
+    .pcard__body{padding:1.5rem;}
+    .pcard__size-tag{display:inline-block;background:var(--bg);border:1px solid var(--border);color:var(--hazel);font-size:0.72rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.7rem;border-radius:0.5rem;margin-bottom:0.75rem;}
+    .pcard__name{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;letter-spacing:0.05em;line-height:1;margin-bottom:0.3rem;}
+    .pcard__flavor{font-size:0.78rem;color:var(--muted);margin-bottom:1rem;}
+
+    /* Protein highlight chip */
+    .pcard__protein-chip{display:inline-flex;align-items:center;gap:0.35rem;background:var(--green-dim);border:1px solid rgba(76,175,80,0.35);border-radius:1rem;padding:0.22rem 0.65rem;font-size:0.72rem;font-weight:800;color:#6fcf72;margin-bottom:1rem;}
+
+    /* Calorie meter */
+    .meter{margin-bottom:1.2rem;}
+    .meter__row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;}
+    .meter__label{font-size:0.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;}
+    .meter__val{font-size:0.82rem;color:var(--amber);font-weight:800;}
+    .meter__track{background:var(--bg);height:5px;border-radius:3px;overflow:hidden;}
+    .meter__fill{height:100%;background:linear-gradient(90deg,var(--hazel),var(--amber));border-radius:3px;width:0%;transition:width 1s cubic-bezier(.4,0,.2,1);}
+
+    /* No sugar badge on card */
+    .pcard__nosug{font-size:0.72rem;color:#6fcf72;font-weight:700;margin-bottom:1rem;}
+
+    .pcard__price{display:flex;align-items:baseline;gap:0.2rem;margin-bottom:1.2rem;}
+    .pcard__currency{font-size:1.15rem;color:var(--muted);font-weight:700;}
+    .pcard__amount{font-family:'Bebas Neue',sans-serif;font-size:2.9rem;line-height:1;color:var(--text);}
+    .pcard__btn{width:100%;padding:0.8rem;background:linear-gradient(135deg,var(--hazel),var(--gold));border:none;border-radius:0.8rem;color:var(--bg);font-size:0.9rem;font-weight:800;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;transition:opacity 0.2s,transform 0.15s;}
+    .pcard__btn:hover{opacity:0.88;transform:scale(1.015);}
+
+    /* ─── SUGAR-FREE BANNER ───────────────────────────────────────── */
+    .sugar-banner{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 6%;}
+    .sugar-banner__inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;}
+    .scard{background:var(--bg);border:1px solid var(--border);border-radius:1.2rem;padding:1.5rem;text-align:center;transition:border-color 0.25s;}
+    .scard:hover{border-color:var(--hazel);}
+    .scard__icon{font-size:2rem;margin-bottom:0.7rem;display:block;}
+    .scard__title{font-weight:800;font-size:0.93rem;margin-bottom:0.3rem;}
+    .scard__desc{font-size:0.8rem;color:var(--muted);line-height:1.55;}
+    .scard__hi{color:var(--amber);font-weight:700;}
+    .scard--green .scard__title{color:#6fcf72;}
+
+    /* ─── NUTRITION TABLE ─────────────────────────────────────────── */
+    .nutrition{padding:5.5rem 6%;background:var(--bg);}
+    .nutrition__inner{max-width:900px;margin:0 auto;}
+    .ntabs{display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+    .ntab{background:var(--surface);border:1.5px solid var(--border);border-radius:2rem;padding:0.4rem 1.1rem;font-size:0.8rem;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;}
+    .ntab.active,.ntab:hover{border-color:var(--hazel);color:var(--amber);}
+    .ntable{width:100%;border-collapse:collapse;font-size:0.88rem;}
+    .ntable th{text-align:left;padding:0.7rem 1rem;background:var(--surface2);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+    .ntable td{padding:0.65rem 1rem;border-bottom:1px solid var(--border);}
+    .ntable tr:last-child td{border-bottom:none;}
+    .ntable .highlight{color:var(--amber);font-weight:800;}
+    .ntable .green{color:#6fcf72;font-weight:800;}
+    .ntable__panel{display:none;}
+    .ntable__panel.active{display:block;}
+
+    /* ─── INGREDIENTS ─────────────────────────────────────────────── */
+    .ingr{padding:5.5rem 6%;}
+    .ingr__inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+    .ingr__visual{display:flex;align-items:center;justify-content:center;position:relative;height:320px;}
+    .ingr__ring{position:absolute;width:320px;height:320px;border-radius:50%;border:1px dashed rgba(192,120,53,0.22);}
+    .ingr__tag{position:absolute;background:var(--surface);border:1px solid var(--border);border-radius:2rem;padding:0.38rem 0.9rem;font-size:0.78rem;font-weight:700;color:var(--hazel);white-space:nowrap;}
+    .ingr__text h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4vw,3rem);line-height:1.05;letter-spacing:0.03em;margin-bottom:1rem;}
+    .ingr__text h2 em{font-style:normal;color:var(--amber);}
+    .ingr__text p{color:var(--muted);line-height:1.8;font-size:0.95rem;margin-bottom:1.5rem;}
+    .ingr__pills{display:flex;flex-wrap:wrap;gap:0.55rem;}
+    .pill{background:var(--surface);border:1px solid var(--border);padding:0.38rem 0.9rem;border-radius:2rem;font-size:0.78rem;font-weight:700;color:var(--muted);}
+    .pill--hi{border-color:var(--hazel);color:var(--hazel);}
+    .pill--green{border-color:rgba(76,175,80,0.4);color:#6fcf72;}
+
+    /* ─── DIABETES NOTE ───────────────────────────────────────────── */
+    .diabetic-note{background:linear-gradient(135deg,rgba(76,175,80,0.07),rgba(232,168,48,0.07));border:1px solid rgba(76,175,80,0.2);border-radius:1.2rem;padding:1.5rem 1.8rem;margin-bottom:2rem;max-width:900px;margin-inline:auto;}
+    .diabetic-note__icon{font-size:1.4rem;margin-bottom:0.5rem;}
+    .diabetic-note__title{font-weight:800;color:#6fcf72;font-size:0.95rem;margin-bottom:0.4rem;}
+    .diabetic-note__text{font-size:0.85rem;color:var(--muted);line-height:1.7;}
+    .diabetic-note__text strong{color:var(--text);}
+
+    /* ─── FEATURES ────────────────────────────────────────────────── */
+    .features{padding:5.5rem 6%;background:var(--bg2);}
+    .features__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;max-width:1100px;margin:0 auto;}
+    .fcard{background:var(--surface);border:1px solid var(--border);border-radius:1.2rem;padding:1.8rem 1.4rem;text-align:center;transition:border-color 0.25s;}
+    .fcard:hover{border-color:var(--hazel);}
+    .fcard__icon{font-size:2rem;margin-bottom:0.9rem;display:block;}
+    .fcard__title{font-weight:800;font-size:0.93rem;margin-bottom:0.45rem;}
+    .fcard__desc{font-size:0.8rem;color:var(--muted);line-height:1.55;}
+    .fcard__hi{color:var(--amber);font-weight:700;}
+
+    /* ─── GEN Z SECTION ───────────────────────────────────────────── */
+    .genz{padding:5rem 6%;background:var(--bg);}
+    .genz__inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+    .genz__text .sec-tag{text-align:left;}
+    .genz__text h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4vw,3rem);line-height:1.05;margin-bottom:1rem;}
+    .genz__text h2 em{font-style:normal;color:var(--amber);}
+    .genz__text p{color:var(--muted);line-height:1.8;font-size:0.95rem;margin-bottom:1.5rem;}
+    .genz__grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .genz__tile{background:var(--surface);border:1px solid var(--border);border-radius:1rem;padding:1.2rem;text-align:center;}
+    .genz__tile-icon{font-size:1.6rem;margin-bottom:0.5rem;}
+    .genz__tile-label{font-size:0.8rem;font-weight:800;color:var(--hazel);}
+    .genz__tile-val{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--amber);}
+
+    /* ─── ORDER CTA ───────────────────────────────────────────────── */
+    .cta{padding:6rem 6%;text-align:center;position:relative;overflow:hidden;}
+    .cta__glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:350px;background:radial-gradient(ellipse,rgba(200,120,53,0.09),transparent);pointer-events:none;}
+    .cta__inner{position:relative;max-width:680px;margin:0 auto;}
+    .cta__h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4rem);letter-spacing:0.03em;margin-bottom:0.9rem;}
+    .cta__p{color:var(--muted);margin-bottom:1.8rem;line-height:1.7;font-size:0.97rem;}
+    .cta__badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--surface);border:1px solid var(--border);border-radius:2rem;padding:0.5rem 1.2rem;font-size:0.82rem;font-weight:800;color:var(--hazel);margin-bottom:2rem;}
+    .cta__btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;}
+
+    .steps{display:flex;justify-content:center;gap:0;flex-wrap:wrap;margin-top:3rem;background:var(--surface);border:1px solid var(--border);border-radius:1rem;overflow:hidden;}
+    .step{flex:1;min-width:160px;padding:1.5rem 1.2rem;text-align:center;border-right:1px solid var(--border);position:relative;}
+    .step:last-child{border-right:none;}
+    .step__num{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--dim);line-height:1;margin-bottom:0.4rem;}
+    .step__title{font-weight:800;font-size:0.9rem;margin-bottom:0.25rem;}
+    .step__desc{font-size:0.78rem;color:var(--muted);}
+
+    /* WhatsApp floating button */
+    .wa-float{position:fixed;bottom:1.8rem;right:1.8rem;z-index:400;background:#25D366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 6px 24px rgba(37,211,102,0.4);cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-decoration:none;}
+    .wa-float:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,0.5);}
+
+    /* ─── FOOTER ──────────────────────────────────────────────────── */
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:2.5rem 6%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.5rem;}
+    .footer__logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--amber);}
+    .footer__mid{text-align:center;}
+    .footer__note{font-size:0.78rem;color:var(--muted);}
+    .footer__note a{color:var(--hazel);}
+    .footer__wa{display:inline-flex;align-items:center;gap:0.5rem;background:#25D366;color:#fff;padding:0.5rem 1.1rem;border-radius:2rem;font-size:0.82rem;font-weight:800;transition:opacity 0.2s;}
+    .footer__wa:hover{opacity:0.88;}
+
+    /* ─── SCROLL ANIMATIONS ───────────────────────────────────────── */
+    .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
+    .fade-up.visible{opacity:1;transform:translateY(0);}
+    .fade-up.delay-1{transition-delay:0.1s;}
+    .fade-up.delay-2{transition-delay:0.2s;}
+    .fade-up.delay-3{transition-delay:0.3s;}
+
+    /* ─── MODAL ───────────────────────────────────────────────────── */
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.78);z-index:500;align-items:center;justify-content:center;}
+    .modal-overlay.open{display:flex;}
+    .modal{background:var(--surface2);border:1px solid var(--border);border-radius:1.5rem;padding:2.2rem 2rem;max-width:440px;width:90%;text-align:center;position:relative;}
+    .modal h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.05em;color:var(--amber);margin-bottom:0.3rem;}
+    .modal p{font-size:0.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6;}
+    .modal__close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--muted);}
+    .modal__flavor-sel{display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.2rem;}
+    .mflavor{background:var(--bg);border:1.5px solid var(--border);border-radius:2rem;padding:0.3rem 0.85rem;font-size:0.78rem;font-weight:800;color:var(--muted);cursor:pointer;transition:all 0.2s;}
+    .mflavor.active,.mflavor:hover{border-color:var(--hazel);color:var(--amber);}
+    .modal__items{margin-bottom:1.2rem;}
+    .modal__item{display:flex;justify-content:space-between;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border);font-size:0.88rem;font-weight:700;}
+    .modal__item:last-child{border-bottom:none;}
+    .modal__qty{display:flex;align-items:center;gap:0.6rem;}
+    .modal__qty button{background:var(--bg);border:1px solid var(--border);width:28px;height:28px;border-radius:50%;color:var(--text);cursor:pointer;font-size:1rem;font-weight:700;transition:border-color 0.2s;}
+    .modal__qty button:hover{border-color:var(--hazel);}
+    .modal__qty span{min-width:20px;text-align:center;color:var(--amber);}
+    .modal__total{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--text);margin-bottom:0.6rem;}
+    .modal__delivery-note{font-size:0.78rem;color:var(--hazel);font-weight:700;margin-bottom:1.5rem;}
+    .modal__customer{text-align:left;margin-bottom:1.2rem;}
+    .modal__customer label{display:block;font-size:0.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.3rem;}
+    .modal__customer input,.modal__customer textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:0.6rem;color:var(--text);padding:0.6rem 0.9rem;font-family:'Nunito',sans-serif;font-size:0.88rem;margin-bottom:0.8rem;outline:none;transition:border-color 0.2s;}
+    .modal__customer input:focus,.modal__customer textarea:focus{border-color:var(--hazel);}
+    .modal__customer textarea{resize:vertical;min-height:60px;}
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────────── */
+    @media(max-width:1000px){
+      .products__grid{grid-template-columns:repeat(2,1fr);}
+      .genz__inner{grid-template-columns:1fr;}
+      footer{grid-template-columns:1fr;text-align:center;}
+      .footer__mid{order:2;}
+    }
+    @media(max-width:900px){
+      .ingr__inner{grid-template-columns:1fr;}
+      .ingr__visual{height:220px;}
+      .ingr__ring{width:220px;height:220px;}
+      .features__grid{grid-template-columns:1fr 1fr;}
+      .sugar-banner__inner{grid-template-columns:1fr;}
+    }
+    @media(max-width:700px){
+      .nav__links{display:none;}
+      .nav__ham{display:flex;}
+      .steps{flex-direction:column;}
+      .step{border-right:none;border-bottom:1px solid var(--border);}
+      .step:last-child{border-bottom:none;}
+      .products__grid{grid-template-columns:1fr;max-width:400px;margin-inline:auto;}
+    }
+    @media(max-width:480px){
+      .features__grid{grid-template-columns:1fr;}
+      .genz__grid{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════ NAV -->
+<nav class="nav">
+  <div class="nav__logo">FUEL<span>BAR</span></div>
+  <ul class="nav__links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#nutrition">Nutrition</a></li>
+    <li><a href="#ingredients">Ingredients</a></li>
+    <li><a href="#delivery">Delivery</a></li>
+    <li><a href="#order" class="nav__cta">Order Now</a></li>
+  </ul>
+  <button class="nav__ham" id="hamBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav__drawer" id="drawer">
+  <button class="nav__drawer-close" id="drawerClose">✕</button>
+  <a href="#products" onclick="closeDrawer()">Products</a>
+  <a href="#nutrition" onclick="closeDrawer()">Nutrition</a>
+  <a href="#ingredients" onclick="closeDrawer()">Ingredients</a>
+  <a href="#delivery" onclick="closeDrawer()">Delivery</a>
+  <a href="#order" class="btn-primary" onclick="closeDrawer()">Order Now</a>
+</div>
+
+<!-- ════════════════════ HERO -->
+<section class="hero">
+  <div class="hero__glow"></div>
+  <div class="hero__pill">
+    <span class="hero__pill-dot"></span>
+    25% Whey Protein · No Added Sugar · Pan-India Delivery
+  </div>
+  <h1 class="hero__h1">
+    FUEL YOUR<br>
+    <span class="hero__h1-gold">EVERY GAIN</span>
+  </h1>
+  <p class="hero__sub">
+    Real <strong>25% complete whey protein</strong> — no soya, no added sugar.<br>
+    Sweetened naturally with <strong>jaggery, dates &amp; honey</strong>.
+    Your guilt-free power snack, delivered anywhere in <strong>India</strong>.
+  </p>
+  <div class="hero__btns">
+    <a href="#products" class="btn-primary">Shop Protein Bars</a>
+    <a href="#nutrition" class="btn-outline">View Nutrition</a>
+  </div>
+
+  <div class="hero__badges">
+    <span class="hbadge hbadge--green">✅ No Added Sugar</span>
+    <span class="hbadge hbadge--gold">💪 25% Whey Protein</span>
+    <span class="hbadge hbadge--green">🌿 No Soya</span>
+    <span class="hbadge">🚚 Pan-India Delivery</span>
+    <span class="hbadge hbadge--green">🩺 Diabetic-Friendly*</span>
+    <span class="hbadge">⚡ Gen Z Approved</span>
+  </div>
+
+  <div class="stats fade-up">
+    <div class="stats__item">
+      <div class="stats__num">25%</div>
+      <div class="stats__label">Whey Protein</div>
+    </div>
+    <div class="stats__item">
+      <div class="stats__num">0g</div>
+      <div class="stats__label">Added Sugar</div>
+    </div>
+    <div class="stats__item">
+      <div class="stats__num">3</div>
+      <div class="stats__label">Flavors</div>
+    </div>
+    <div class="stats__item">
+      <div class="stats__num">₹60</div>
+      <div class="stats__label">Starts From</div>
+    </div>
+    <div class="stats__item">
+      <div class="stats__num">🇮🇳</div>
+      <div class="stats__label">Pan-India</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ PRODUCTS -->
+<section class="products" id="products">
+  <div class="sec-head fade-up">
+    <div class="sec-tag">Choose Your Fuel</div>
+    <h2 class="sec-title">THREE FLAVORS. THREE SIZES.</h2>
+    <p class="sec-body">Every bar packs 25% complete whey protein — zero soya, zero added sugar. Pick your flavor and power level.</p>
+  </div>
+
+  <!-- Flavor Selector -->
+  <div class="flavor-tabs" id="flavorTabs">
+    <button class="ftab active" data-flavor="choc" onclick="switchFlavor('choc',this)">🍫 Choc Hazelnut</button>
+    <button class="ftab" data-flavor="dates" onclick="switchFlavor('dates',this)">🌴 Dates Delight</button>
+  </div>
+
+  <!-- CHOCOLATE HAZELNUT GRID -->
+  <div class="products__grid" id="grid-choc">
+
+    <!-- SPARK -->
+    <div class="pcard fade-up">
+      <div class="pcard__visual">
+        <svg width="110" height="55" viewBox="0 0 110 55" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bG1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7B4122"/><stop offset="100%" stop-color="#4A2410"/></linearGradient>
+            <linearGradient id="sG1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.12)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+          </defs>
+          <rect x="4" y="4" width="102" height="47" rx="7" fill="url(#bG1)"/>
+          <rect x="4" y="4" width="102" height="24" rx="7" fill="url(#sG1)"/>
+          <line x1="26" y1="4" x2="26" y2="51" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <line x1="48" y1="4" x2="48" y2="51" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <line x1="70" y1="4" x2="70" y2="51" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <line x1="92" y1="4" x2="92" y2="51" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <text x="55" y="34" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="13" fill="rgba(245,190,80,0.85)" letter-spacing="2">SPARK</text>
+        </svg>
+      </div>
+      <div class="pcard__body">
+        <div class="pcard__size-tag">40g · Starter</div>
+        <div class="pcard__name">SPARK BAR</div>
+        <div class="pcard__flavor">🍫 Chocolate Hazelnut + Dry Fruits</div>
+        <div class="pcard__protein-chip">💪 10g Whey Protein (25%)</div>
+        <div class="pcard__nosug">✅ No Added Sugar · Jaggery &amp; Honey Sweetened</div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Energy</span><span class="meter__val">150 kcal</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="60"></div></div>
+        </div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Protein</span><span class="meter__val">10g</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="40" style="background:linear-gradient(90deg,#4CAF50,#6fcf72)"></div></div>
+        </div>
+        <div class="pcard__price"><span class="pcard__currency">₹</span><span class="pcard__amount">60</span></div>
+        <button class="pcard__btn" onclick="openOrder('SPARK BAR',60,150,'40g','Chocolate Hazelnut')">Order Now</button>
+      </div>
+    </div>
+
+    <!-- POWER (featured) -->
+    <div class="pcard pcard--featured fade-up delay-1">
+      <div class="pcard__badge">Best Seller</div>
+      <div class="pcard__visual">
+        <svg width="145" height="65" viewBox="0 0 145 65" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8B4A22"/><stop offset="100%" stop-color="#532A10"/></linearGradient>
+            <linearGradient id="sG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.14)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+          </defs>
+          <rect x="4" y="4" width="137" height="57" rx="8" fill="url(#bG2)"/>
+          <rect x="4" y="4" width="137" height="29" rx="8" fill="url(#sG2)"/>
+          <line x1="30" y1="4" x2="30" y2="61" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <line x1="56" y1="4" x2="56" y2="61" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <line x1="82" y1="4" x2="82" y2="61" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <line x1="108" y1="4" x2="108" y2="61" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <text x="72" y="40" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="15" fill="rgba(245,190,80,0.9)" letter-spacing="2">POWER</text>
+        </svg>
+      </div>
+      <div class="pcard__body">
+        <div class="pcard__size-tag">60g · Power</div>
+        <div class="pcard__name">POWER BAR</div>
+        <div class="pcard__flavor">🍫 Chocolate Hazelnut + Dry Fruits</div>
+        <div class="pcard__protein-chip">💪 15g Whey Protein (25%)</div>
+        <div class="pcard__nosug">✅ No Added Sugar · Jaggery &amp; Honey Sweetened</div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Energy</span><span class="meter__val">220 kcal</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="80"></div></div>
+        </div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Protein</span><span class="meter__val">15g</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="60" style="background:linear-gradient(90deg,#4CAF50,#6fcf72)"></div></div>
+        </div>
+        <div class="pcard__price"><span class="pcard__currency">₹</span><span class="pcard__amount">90</span></div>
+        <button class="pcard__btn" onclick="openOrder('POWER BAR',90,220,'60g','Chocolate Hazelnut')">Order Now</button>
+      </div>
+    </div>
+
+    <!-- BEAST -->
+    <div class="pcard fade-up delay-2">
+      <div class="pcard__visual">
+        <svg width="175" height="75" viewBox="0 0 175 75" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bG3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9A5225"/><stop offset="100%" stop-color="#5D3012"/></linearGradient>
+            <linearGradient id="sG3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.14)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+          </defs>
+          <rect x="4" y="4" width="167" height="67" rx="9" fill="url(#bG3)"/>
+          <rect x="4" y="4" width="167" height="34" rx="9" fill="url(#sG3)"/>
+          <line x1="36" y1="4" x2="36" y2="71" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <line x1="68" y1="4" x2="68" y2="71" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <line x1="100" y1="4" x2="100" y2="71" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <line x1="132" y1="4" x2="132" y2="71" stroke="rgba(0,0,0,0.18)" stroke-width="1"/>
+          <text x="88" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="16" fill="rgba(245,190,80,0.9)" letter-spacing="2">BEAST</text>
+        </svg>
+      </div>
+      <div class="pcard__body">
+        <div class="pcard__size-tag">90g · Maximum</div>
+        <div class="pcard__name">BEAST BAR</div>
+        <div class="pcard__flavor">🍫 Chocolate Hazelnut + Dry Fruits</div>
+        <div class="pcard__protein-chip">💪 22.5g Whey Protein (25%)</div>
+        <div class="pcard__nosug">✅ No Added Sugar · Jaggery &amp; Honey Sweetened</div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Energy</span><span class="meter__val">280 kcal</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="100"></div></div>
+        </div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Protein</span><span class="meter__val">22.5g</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="90" style="background:linear-gradient(90deg,#4CAF50,#6fcf72)"></div></div>
+        </div>
+        <div class="pcard__price"><span class="pcard__currency">₹</span><span class="pcard__amount">120</span></div>
+        <button class="pcard__btn" onclick="openOrder('BEAST BAR',120,280,'90g','Chocolate Hazelnut')">Order Now</button>
+      </div>
+    </div>
+
+  </div><!-- /grid-choc -->
+
+  <!-- DATES FLAVOR GRID -->
+  <div class="products__grid" id="grid-dates" style="display:none">
+
+    <!-- SPARK DATES -->
+    <div class="pcard fade-up">
+      <div class="pcard__visual">
+        <svg width="110" height="55" viewBox="0 0 110 55" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="dG1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6B4515"/><stop offset="100%" stop-color="#3D260A"/></linearGradient>
+            <linearGradient id="dsG1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,220,150,0.15)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+          </defs>
+          <rect x="4" y="4" width="102" height="47" rx="7" fill="url(#dG1)"/>
+          <rect x="4" y="4" width="102" height="24" rx="7" fill="url(#dsG1)"/>
+          <line x1="26" y1="4" x2="26" y2="51" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <line x1="48" y1="4" x2="48" y2="51" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <line x1="70" y1="4" x2="70" y2="51" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <line x1="92" y1="4" x2="92" y2="51" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <text x="55" y="34" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="rgba(245,190,80,0.9)" letter-spacing="1.5">SPARK</text>
+        </svg>
+      </div>
+      <div class="pcard__body">
+        <div class="pcard__size-tag">40g · Starter</div>
+        <div class="pcard__name">SPARK BAR</div>
+        <div class="pcard__flavor">🌴 Dates Delight · Natural Sweetness</div>
+        <div class="pcard__protein-chip">💪 10g Whey Protein (25%)</div>
+        <div class="pcard__nosug">✅ No Added Sugar · Dates &amp; Honey Sweetened</div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Energy</span><span class="meter__val">145 kcal</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="58"></div></div>
+        </div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Protein</span><span class="meter__val">10g</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="40" style="background:linear-gradient(90deg,#4CAF50,#6fcf72)"></div></div>
+        </div>
+        <div class="pcard__price"><span class="pcard__currency">₹</span><span class="pcard__amount">65</span></div>
+        <button class="pcard__btn" onclick="openOrder('SPARK BAR – Dates',65,145,'40g','Dates Delight')">Order Now</button>
+      </div>
+    </div>
+
+    <!-- POWER DATES (featured) -->
+    <div class="pcard pcard--featured fade-up delay-1">
+      <div class="pcard__badge">New Flavor</div>
+      <div class="pcard__visual">
+        <svg width="145" height="65" viewBox="0 0 145 65" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="dG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7A4F1A"/><stop offset="100%" stop-color="#472D0C"/></linearGradient>
+            <linearGradient id="dsG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,220,150,0.15)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+          </defs>
+          <rect x="4" y="4" width="137" height="57" rx="8" fill="url(#dG2)"/>
+          <rect x="4" y="4" width="137" height="29" rx="8" fill="url(#dsG2)"/>
+          <line x1="30" y1="4" x2="30" y2="61" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <line x1="56" y1="4" x2="56" y2="61" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <line x1="82" y1="4" x2="82" y2="61" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <line x1="108" y1="4" x2="108" y2="61" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <text x="72" y="40" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="14" fill="rgba(245,190,80,0.9)" letter-spacing="1.5">POWER</text>
+        </svg>
+      </div>
+      <div class="pcard__body">
+        <div class="pcard__size-tag">60g · Power</div>
+        <div class="pcard__name">POWER BAR</div>
+        <div class="pcard__flavor">🌴 Dates Delight · Natural Sweetness</div>
+        <div class="pcard__protein-chip">💪 15g Whey Protein (25%)</div>
+        <div class="pcard__nosug">✅ No Added Sugar · Dates &amp; Honey Sweetened</div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Energy</span><span class="meter__val">210 kcal</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="78"></div></div>
+        </div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Protein</span><span class="meter__val">15g</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="60" style="background:linear-gradient(90deg,#4CAF50,#6fcf72)"></div></div>
+        </div>
+        <div class="pcard__price"><span class="pcard__currency">₹</span><span class="pcard__amount">95</span></div>
+        <button class="pcard__btn" onclick="openOrder('POWER BAR – Dates',95,210,'60g','Dates Delight')">Order Now</button>
+      </div>
+    </div>
+
+    <!-- BEAST DATES -->
+    <div class="pcard fade-up delay-2">
+      <div class="pcard__visual">
+        <svg width="175" height="75" viewBox="0 0 175 75" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="dG3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8A5820"/><stop offset="100%" stop-color="#523510"/></linearGradient>
+            <linearGradient id="dsG3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,220,150,0.15)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+          </defs>
+          <rect x="4" y="4" width="167" height="67" rx="9" fill="url(#dG3)"/>
+          <rect x="4" y="4" width="167" height="34" rx="9" fill="url(#dsG3)"/>
+          <line x1="36" y1="4" x2="36" y2="71" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <line x1="68" y1="4" x2="68" y2="71" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <line x1="100" y1="4" x2="100" y2="71" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <line x1="132" y1="4" x2="132" y2="71" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+          <text x="88" y="46" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="15" fill="rgba(245,190,80,0.9)" letter-spacing="1.5">BEAST</text>
+        </svg>
+      </div>
+      <div class="pcard__body">
+        <div class="pcard__size-tag">90g · Maximum</div>
+        <div class="pcard__name">BEAST BAR</div>
+        <div class="pcard__flavor">🌴 Dates Delight · Natural Sweetness</div>
+        <div class="pcard__protein-chip">💪 22.5g Whey Protein (25%)</div>
+        <div class="pcard__nosug">✅ No Added Sugar · Dates &amp; Honey Sweetened</div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Energy</span><span class="meter__val">270 kcal</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="97"></div></div>
+        </div>
+        <div class="meter">
+          <div class="meter__row"><span class="meter__label">Protein</span><span class="meter__val">22.5g</span></div>
+          <div class="meter__track"><div class="meter__fill" data-fill="90" style="background:linear-gradient(90deg,#4CAF50,#6fcf72)"></div></div>
+        </div>
+        <div class="pcard__price"><span class="pcard__currency">₹</span><span class="pcard__amount">125</span></div>
+        <button class="pcard__btn" onclick="openOrder('BEAST BAR – Dates',125,270,'90g','Dates Delight')">Order Now</button>
+      </div>
+    </div>
+
+  </div><!-- /grid-dates -->
+</section>
+
+<!-- ════════════════════ SUGAR-FREE BANNER -->
+<div class="sugar-banner">
+  <div class="sugar-banner__inner">
+    <div class="scard scard--green fade-up">
+      <span class="scard__icon">🚫</span>
+      <div class="scard__title">Zero Added Sugar</div>
+      <div class="scard__desc">We never add refined sugar. Sweetness comes only from <span class="scard__hi">jaggery, dates &amp; honey</span> — all natural, all real.</div>
+    </div>
+    <div class="scard fade-up delay-1">
+      <span class="scard__icon">💪</span>
+      <div class="scard__title">100% Complete Whey</div>
+      <div class="scard__desc">Every bar contains <span class="scard__hi">25% complete whey protein</span>. No soya, no plant protein fillers — just premium whey for real gains.</div>
+    </div>
+    <div class="scard scard--green fade-up delay-2">
+      <span class="scard__icon">🩺</span>
+      <div class="scard__title">Diabetic-Friendly*</div>
+      <div class="scard__desc">No refined sugar means sugar patients can enjoy FuelBar in <span class="scard__hi">limited portions</span>. Always consult your doctor for personal guidance.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════ NUTRITION TABLE -->
+<section class="nutrition" id="nutrition">
+  <div class="sec-head fade-up">
+    <div class="sec-tag">Nutrition Facts</div>
+    <h2 class="sec-title">WHAT'S INSIDE EVERY BAR</h2>
+    <p class="sec-body">Transparent label. No hidden sugars. Just real fuel.</p>
+  </div>
+
+  <div class="diabetic-note fade-up">
+    <div class="diabetic-note__icon">🩺</div>
+    <div class="diabetic-note__title">For Sugar Patients</div>
+    <div class="diabetic-note__text">
+      FuelBar contains <strong>no added refined sugar</strong>. Natural sugars present are from <strong>jaggery, dates, and honey</strong> which have a lower glycemic impact than refined sugar. Sugar patients and diabetics may consume in limited portions. <strong>Please consult your healthcare provider</strong> before making it a regular part of your diet.
+    </div>
+  </div>
+
+  <div class="ntabs fade-up">
+    <button class="ntab active" onclick="switchNTab('spark',this)">SPARK 40g</button>
+    <button class="ntab" onclick="switchNTab('power',this)">POWER 60g</button>
+    <button class="ntab" onclick="switchNTab('beast',this)">BEAST 90g</button>
+  </div>
+
+  <div class="nutrition__inner fade-up">
+    <div class="ntable__panel active" id="nt-spark">
+      <table class="ntable">
+        <thead><tr><th>Nutrient</th><th>Per Bar (40g)</th><th>% DV*</th></tr></thead>
+        <tbody>
+          <tr><td>Energy</td><td class="highlight">150 kcal</td><td>7.5%</td></tr>
+          <tr><td>Protein (Whey)</td><td class="green">10g (25%)</td><td>20%</td></tr>
+          <tr><td>Total Carbohydrates</td><td>16g</td><td>6%</td></tr>
+          <tr><td>— of which sugars (natural)</td><td>8g</td><td>—</td></tr>
+          <tr><td>— of which Added Sugar</td><td class="green">0g</td><td>0%</td></tr>
+          <tr><td>Total Fat</td><td>5g</td><td>6%</td></tr>
+          <tr><td>— Saturated Fat</td><td>1.5g</td><td>8%</td></tr>
+          <tr><td>Dietary Fiber</td><td>2g</td><td>7%</td></tr>
+          <tr><td>Sodium</td><td>40mg</td><td>2%</td></tr>
+          <tr><td>Soya Content</td><td class="green">0g (Soya-Free)</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.73rem;color:var(--muted);margin-top:0.8rem;">*Based on 2000 kcal diet. Natural sugars from jaggery, dates &amp; honey.</p>
+    </div>
+    <div class="ntable__panel" id="nt-power">
+      <table class="ntable">
+        <thead><tr><th>Nutrient</th><th>Per Bar (60g)</th><th>% DV*</th></tr></thead>
+        <tbody>
+          <tr><td>Energy</td><td class="highlight">220 kcal</td><td>11%</td></tr>
+          <tr><td>Protein (Whey)</td><td class="green">15g (25%)</td><td>30%</td></tr>
+          <tr><td>Total Carbohydrates</td><td>24g</td><td>9%</td></tr>
+          <tr><td>— of which sugars (natural)</td><td>12g</td><td>—</td></tr>
+          <tr><td>— of which Added Sugar</td><td class="green">0g</td><td>0%</td></tr>
+          <tr><td>Total Fat</td><td>7.5g</td><td>9%</td></tr>
+          <tr><td>— Saturated Fat</td><td>2.2g</td><td>11%</td></tr>
+          <tr><td>Dietary Fiber</td><td>3g</td><td>11%</td></tr>
+          <tr><td>Sodium</td><td>60mg</td><td>3%</td></tr>
+          <tr><td>Soya Content</td><td class="green">0g (Soya-Free)</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.73rem;color:var(--muted);margin-top:0.8rem;">*Based on 2000 kcal diet. Natural sugars from jaggery, dates &amp; honey.</p>
+    </div>
+    <div class="ntable__panel" id="nt-beast">
+      <table class="ntable">
+        <thead><tr><th>Nutrient</th><th>Per Bar (90g)</th><th>% DV*</th></tr></thead>
+        <tbody>
+          <tr><td>Energy</td><td class="highlight">280 kcal</td><td>14%</td></tr>
+          <tr><td>Protein (Whey)</td><td class="green">22.5g (25%)</td><td>45%</td></tr>
+          <tr><td>Total Carbohydrates</td><td>36g</td><td>14%</td></tr>
+          <tr><td>— of which sugars (natural)</td><td>18g</td><td>—</td></tr>
+          <tr><td>— of which Added Sugar</td><td class="green">0g</td><td>0%</td></tr>
+          <tr><td>Total Fat</td><td>11g</td><td>14%</td></tr>
+          <tr><td>— Saturated Fat</td><td>3.5g</td><td>18%</td></tr>
+          <tr><td>Dietary Fiber</td><td>4.5g</td><td>16%</td></tr>
+          <tr><td>Sodium</td><td>90mg</td><td>4%</td></tr>
+          <tr><td>Soya Content</td><td class="green">0g (Soya-Free)</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.73rem;color:var(--muted);margin-top:0.8rem;">*Based on 2000 kcal diet. Natural sugars from jaggery, dates &amp; honey.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ INGREDIENTS -->
+<section class="ingr" id="ingredients">
+  <div class="ingr__inner">
+    <div class="ingr__visual fade-up">
+      <div class="ingr__ring"></div>
+      <svg width="190" height="88" viewBox="0 0 190 88" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bigBar" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9A5225"/><stop offset="100%" stop-color="#4A2410"/></linearGradient>
+          <linearGradient id="bigShine" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.13)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+        </defs>
+        <rect x="5" y="5" width="180" height="78" rx="11" fill="url(#bigBar)"/>
+        <rect x="5" y="5" width="180" height="39" rx="11" fill="url(#bigShine)"/>
+        <line x1="38" y1="5" x2="38" y2="83" stroke="rgba(0,0,0,0.2)" stroke-width="1.5"/>
+        <line x1="71" y1="5" x2="71" y2="83" stroke="rgba(0,0,0,0.2)" stroke-width="1.5"/>
+        <line x1="104" y1="5" x2="104" y2="83" stroke="rgba(0,0,0,0.2)" stroke-width="1.5"/>
+        <line x1="137" y1="5" x2="137" y2="83" stroke="rgba(0,0,0,0.2)" stroke-width="1.5"/>
+        <text x="95" y="51" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="18" fill="rgba(245,190,80,0.9)" letter-spacing="3">FUELBAR</text>
+      </svg>
+      <div class="ingr__tag" style="top:8%;left:-14px">🍫 Dark Chocolate</div>
+      <div class="ingr__tag" style="top:55%;left:-10px">🥜 Hazelnut</div>
+      <div class="ingr__tag" style="top:18%;right:-10px">🌴 Dates</div>
+      <div class="ingr__tag" style="top:65%;right:-6px">🍯 Honey</div>
+      <div class="ingr__tag" style="bottom:4%;left:50%;transform:translateX(-50%)">🌾 Jaggery</div>
+    </div>
+
+    <div class="ingr__text fade-up">
+      <div class="sec-tag">Ingredients</div>
+      <h2>REAL FOOD.<br><em>ZERO COMPROMISE.</em></h2>
+      <p>
+        Crafted with real dark chocolate, roasted hazelnuts, premium dates, and a generous mix of dry fruits.
+        Sweetened purely with <strong style="color:var(--text)">jaggery, dates &amp; honey</strong> — no refined sugar, ever.
+        No artificial colors, no fake flavoring, no soya — just pure, indulgent taste that fuels your workouts.
+      </p>
+      <div class="ingr__pills">
+        <span class="pill pill--hi">Dark Chocolate</span>
+        <span class="pill pill--hi">Roasted Hazelnut</span>
+        <span class="pill pill--hi">Premium Dates</span>
+        <span class="pill pill--hi">Dry Fruits Mix</span>
+        <span class="pill pill--green">Complete Whey Protein</span>
+        <span class="pill pill--green">Jaggery</span>
+        <span class="pill pill--green">Raw Honey</span>
+        <span class="pill">No Artificial Colors</span>
+        <span class="pill">No Artificial Flavors</span>
+        <span class="pill">No Soya</span>
+        <span class="pill">Freshly Made</span>
+        <span class="pill">30-Day Shelf Life</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ GEN Z SECTION -->
+<section class="genz" id="genz">
+  <div class="genz__inner">
+    <div class="genz__text fade-up">
+      <div class="sec-tag">Built for Gen Z</div>
+      <h2>SNACK SMART.<br><em>LIVE HARDER.</em></h2>
+      <p>
+        Skip the chips. Drop the biscuit. FuelBar is the snack upgrade Gen Z actually needed —
+        real protein, natural energy, no sugar crash. Whether you're grinding at college,
+        hustling at work, or smashing a workout — FuelBar keeps you fueled without the guilt.
+      </p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:0.5rem;">
+        <a href="#products" class="btn-primary" style="font-size:0.9rem">Shop Now</a>
+        <a href="https://wa.me/916263099627?text=Hi!%20I%20want%20to%20order%20FuelBar" target="_blank" class="btn-wa" style="font-size:0.9rem">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Order
+        </a>
+      </div>
+    </div>
+    <div class="genz__grid fade-up delay-1">
+      <div class="genz__tile">
+        <div class="genz__tile-icon">⚡</div>
+        <div class="genz__tile-label">Instant Energy</div>
+        <div class="genz__tile-val">No Crash</div>
+      </div>
+      <div class="genz__tile">
+        <div class="genz__tile-icon">💪</div>
+        <div class="genz__tile-label">Protein per Bar</div>
+        <div class="genz__tile-val">25%</div>
+      </div>
+      <div class="genz__tile">
+        <div class="genz__tile-icon">🚫🍬</div>
+        <div class="genz__tile-label">Added Sugar</div>
+        <div class="genz__tile-val">ZERO</div>
+      </div>
+      <div class="genz__tile">
+        <div class="genz__tile-icon">🌿</div>
+        <div class="genz__tile-label">Sweetener</div>
+        <div class="genz__tile-val">Natural</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ FEATURES / DELIVERY -->
+<section class="features" id="delivery">
+  <div class="sec-head fade-up">
+    <div class="sec-tag">Why FuelBar</div>
+    <h2 class="sec-title">BUILT FOR YOUR LIFESTYLE</h2>
+  </div>
+  <div class="features__grid">
+    <div class="fcard fade-up">
+      <span class="fcard__icon">🚚</span>
+      <div class="fcard__title">Pan-India Delivery</div>
+      <div class="fcard__desc">We deliver to <span class="fcard__hi">all states across India</span> — from metro cities to tier-2 towns. Order anywhere, receive everywhere.</div>
+    </div>
+    <div class="fcard fade-up delay-1">
+      <span class="fcard__icon">🎁</span>
+      <div class="fcard__title">Free Delivery</div>
+      <div class="fcard__desc">Spend <span class="fcard__hi">₹500 or more</span> and delivery is on us. Stock up, save more — works pan-India.</div>
+    </div>
+    <div class="fcard fade-up delay-2">
+      <span class="fcard__icon">📅</span>
+      <div class="fcard__title">30 Days Fresh</div>
+      <div class="fcard__desc">Every bar carries a <span class="fcard__hi">30-day shelf life</span>. Peak freshness, always guaranteed.</div>
+    </div>
+    <div class="fcard fade-up delay-3">
+      <span class="fcard__icon">💬</span>
+      <div class="fcard__title">WhatsApp Orders</div>
+      <div class="fcard__desc">Order in 30 seconds via WhatsApp. Talk to us at <span class="fcard__hi">+91 62630 99627</span> — fast, personal, easy.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ ORDER CTA -->
+<section class="cta" id="order">
+  <div class="cta__glow"></div>
+  <div class="cta__inner">
+    <div class="fade-up">
+      <div class="sec-tag">Ready to Fuel Up?</div>
+      <h2 class="cta__h2">ORDER TODAY.<br>GAIN TOMORROW.</h2>
+      <p class="cta__p">
+        Mix flavors, mix sizes — hit ₹500 and unlock free delivery anywhere in India.
+        No added sugar, 25% whey protein, 2 epic flavors.
+      </p>
+      <div class="cta__badge">🚚 Free delivery on orders above ₹500 · Pan-India</div>
+      <div class="cta__btns">
+        <a href="#products" class="btn-primary" style="font-size:1rem">Shop Now — Starts at ₹60</a>
+        <a href="https://wa.me/916263099627?text=Hi!%20I%20want%20to%20order%20FuelBar%20protein%20bars.%20Please%20share%20availability." target="_blank" class="btn-wa" style="font-size:1rem">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="steps fade-up">
+      <div class="step">
+        <div class="step__num">01</div>
+        <div class="step__title">Pick Your Bar</div>
+        <div class="step__desc">Choose flavor &amp; size</div>
+      </div>
+      <div class="step">
+        <div class="step__num">02</div>
+        <div class="step__title">WhatsApp Us</div>
+        <div class="step__desc">+91 62630 99627</div>
+      </div>
+      <div class="step">
+        <div class="step__num">03</div>
+        <div class="step__title">Pay &amp; Relax</div>
+        <div class="step__desc">UPI / COD accepted</div>
+      </div>
+      <div class="step">
+        <div class="step__num">04</div>
+        <div class="step__title">Get Delivered</div>
+        <div class="step__desc">Anywhere in India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ FOOTER -->
+<footer>
+  <div class="footer__logo">FUELBAR</div>
+  <div class="footer__mid">
+    <div class="footer__note">25% Whey Protein · No Added Sugar · No Soya · Pan-India Delivery</div>
+    <div class="footer__note" style="margin-top:0.3rem">Sweetened with Jaggery, Dates &amp; Honey · Made with ❤️ in India</div>
+    <div class="footer__note" style="margin-top:0.3rem">*Diabetic friendly in limited portions. Consult your doctor.</div>
+  </div>
+  <a href="https://wa.me/916263099627?text=Hi!%20I%20want%20to%20order%20FuelBar." target="_blank" class="footer__wa">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Order on WhatsApp
+  </a>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/916263099627?text=Hi!%20I%20want%20to%20order%20FuelBar%20protein%20bars." target="_blank" class="wa-float" title="Order on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ════════════════════ ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <button class="modal__close" onclick="closeModal()">✕</button>
+    <h3 id="modalTitle">ORDER BAR</h3>
+    <p id="modalSub">Select flavor &amp; quantity</p>
+
+    <div class="modal__flavor-sel" id="modalFlavorSel"></div>
+    <div class="modal__customer">
+      <label>Your Name</label>
+      <input type="text" id="custName" placeholder="e.g. Rahul Sharma"/>
+      <label>Delivery Address</label>
+      <textarea id="custAddr" placeholder="Full address, city, state, PIN code"></textarea>
+      <label>Phone Number</label>
+      <input type="tel" id="custPhone" placeholder="+91 XXXXX XXXXX"/>
+    </div>
+
+    <div class="modal__items" id="modalItems"></div>
+    <div class="modal__total" id="modalTotal">Total: ₹0</div>
+    <div class="modal__delivery-note" id="deliveryNote"></div>
+    <button class="btn-wa" style="width:100%;font-size:0.95rem;justify-content:center" onclick="confirmOrder()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Confirm Order via WhatsApp
+    </button>
+  </div>
+</div>
+
+<script>
+  // ── Mobile menu ──
+  document.getElementById('hamBtn').onclick = () =>
+    document.getElementById('drawer').classList.add('open');
+  document.getElementById('drawerClose').onclick = closeDrawer;
+  function closeDrawer() { document.getElementById('drawer').classList.remove('open'); }
+
+  // ── Scroll fade-in + meter animations ──
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  document.querySelectorAll('.pcard').forEach(card => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.meter__fill').forEach(bar => {
+            bar.style.width = bar.dataset.fill + '%';
+          });
+        }
+      });
+    }, { threshold: 0.2 }).observe(card);
+  });
+
+  // ── Flavor tabs ──
+  function switchFlavor(flavor, btn) {
+    document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('grid-choc').style.display = flavor === 'choc' ? 'grid' : 'none';
+    document.getElementById('grid-dates').style.display = flavor === 'dates' ? 'grid' : 'none';
+    // Retrigger meter animations for newly visible grid
+    setTimeout(() => {
+      document.querySelectorAll('#grid-' + flavor + ' .meter__fill').forEach(bar => {
+        bar.style.width = bar.dataset.fill + '%';
+      });
+    }, 100);
+  }
+
+  // ── Nutrition tabs ──
+  function switchNTab(size, btn) {
+    document.querySelectorAll('.ntab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.ntable__panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('nt-' + size).classList.add('active');
+  }
+
+  // ── Order Modal ──
+  let currentOrder = { name:'', price:0, cal:0, size:'', flavor:'', qty:1 };
+
+  const FLAVORS = ['Chocolate Hazelnut', 'Dates Delight'];
+
+  function openOrder(name, price, cal, size, flavor) {
+    currentOrder = { name, price, cal, size, flavor, qty:1 };
+    document.getElementById('modalTitle').textContent = 'ORDER ' + name.split('–')[0].trim();
+    document.getElementById('modalSub').textContent = size + ' · ' + cal + ' kcal · 25% Whey Protein';
+
+    // Flavor chips
+    const container = document.getElementById('modalFlavorSel');
+    container.innerHTML = FLAVORS.map(f =>
+      `<button class="mflavor${f === flavor ? ' active' : ''}" onclick="selectModalFlavor('${f}',this)">${f === 'Chocolate Hazelnut' ? '🍫' : '🌴'} ${f}</button>`
+    ).join('');
+
+    renderModal();
+    document.getElementById('orderModal').classList.add('open');
+    document.getElementById('custName').value = '';
+    document.getElementById('custAddr').value = '';
+    document.getElementById('custPhone').value = '';
+  }
+
+  function selectModalFlavor(flavor, btn) {
+    document.querySelectorAll('.mflavor').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentOrder.flavor = flavor;
+  }
+
+  function renderModal() {
+    const { name, price, qty } = currentOrder;
+    const total = price * qty;
+    document.getElementById('modalItems').innerHTML = `
+      <div class="modal__item">
+        <span>${name}</span>
+        <div class="modal__qty">
+          <button onclick="changeQty(-1)">−</button>
+          <span id="qtyDisplay">${qty}</span>
+          <button onclick="changeQty(1)">+</button>
+        </div>
+        <span>₹${price * qty}</span>
+      </div>`;
+    document.getElementById('modalTotal').textContent = 'Total: ₹' + total;
+    document.getElementById('deliveryNote').textContent = total >= 500
+      ? '🎉 Free delivery applied! Pan-India.'
+      : `Add ₹${500 - total} more for FREE pan-India delivery`;
+  }
+
+  function changeQty(delta) {
+    currentOrder.qty = Math.max(1, currentOrder.qty + delta);
+    renderModal();
+  }
+
+  function closeModal() {
+    document.getElementById('orderModal').classList.remove('open');
+  }
+
+  document.getElementById('orderModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  function confirmOrder() {
+    const { name, price, size, qty, flavor } = currentOrder;
+    const total = price * qty;
+    const delivery = total >= 500 ? 'FREE delivery (pan-India)' : '+ Delivery charges';
+    const name_ = document.getElementById('custName').value.trim();
+    const addr  = document.getElementById('custAddr').value.trim();
+    const phone = document.getElementById('custPhone').value.trim();
+
+    let msg = `Hi FuelBar! I'd like to place an order:\n\n`;
+    msg += `📦 *${qty}x ${name}* (${size})\n`;
+    msg += `🍫 Flavor: *${flavor}*\n`;
+    msg += `💰 Total: ₹${total} — ${delivery}\n`;
+    if (name_)  msg += `\n👤 Name: ${name_}`;
+    if (phone)  msg += `\n📱 Phone: ${phone}`;
+    if (addr)   msg += `\n📍 Address: ${addr}`;
+    msg += `\n\nPlease confirm my order! ✅`;
+
+    window.open('https://wa.me/916263099627?text=' + encodeURIComponent(msg), '_blank');
+    closeModal();
+  }
+
+  // Auto-trigger visible meters on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('#grid-choc .meter__fill').forEach(bar => {
+      bar.style.width = bar.dataset.fill + '%';
+    });
+  });
+</script>
+</body>
+</html>
