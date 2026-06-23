@@ -10,13 +10,14 @@ const navLinks = [
   { href: "#products", label: "Products" },
   { href: "#nutrition", label: "Nutrition" },
   { href: "#ingredients", label: "Ingredients" },
-  { href: "#delivery", label: "Delivery" }
+  { href: "#delivery", label: "Delivery" },
+  { href: "#footer", label: "Support" }
 ];
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { itemCount, openCart } = useCart();
-  const { user, loading, signIn } = useAuth();
+  const { user, loading } = useAuth();
 
   return (
     <header className="navbar">
@@ -43,9 +44,9 @@ export function Navbar() {
             Account
           </Link>
         ) : (
-          <button className="button button--small button--secondary" onClick={signIn} type="button">
+          <Link className="button button--small button--secondary" href="/login">
             Login
-          </button>
+          </Link>
         )}
         <button
           aria-label="Open navigation"

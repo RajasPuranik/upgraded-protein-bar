@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 import { useCart } from "@/components/cart/cart-provider";
 import { useAuth } from "@/components/auth-provider";
 import { QRCodeSVG } from "qrcode.react";
+import dynamic from "next/dynamic";
+
+const MapPicker = dynamic(() => import("@/components/map-picker"), { ssr: false });
 
 function formatMoney(value: number) {
   return `Rs. ${value}`;
@@ -26,6 +29,8 @@ export default function CheckoutPage() {
     state: "",
     pincode: ""
   });
+
+  const [position, setPosition] = useState<[number, number] | null>(null);
 
   const [step, setStep] = useState<"ADDRESS" | "PAYMENT">("ADDRESS");
   const [utrNumber, setUtrNumber] = useState("");
@@ -63,6 +68,10 @@ export default function CheckoutPage() {
       alert("Please login to continue checkout.");
       return;
     }
+    if (!position) {
+      alert("Please drop a pin on the map for your delivery location.");
+      return;
+    }
     setStep("PAYMENT");
   };
 
@@ -86,7 +95,7 @@ export default function CheckoutPage() {
           subtotal,
           deliveryFee,
           total,
-          shippingAddress: address,
+          shippingAddress: { ...address, coordinates: position },
           userId: user?.uid,
           utrNumber
         })
@@ -130,6 +139,12 @@ export default function CheckoutPage() {
             <form onSubmit={proceedToPayment} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
               <h3>Shipping Details</h3>
               
+              <div style={{ marginBottom: '10px' }}>
+                <label style={{ display: 'block', marginBottom: '10px' }}>Pin your delivery location</label>
+                <MapPicker position={position} setPosition={setPosition} />
+                {!position && <p style={{ color: 'var(--primary-color)', fontSize: '0.85rem', marginTop: '5px' }}>Click on the map to set your location.</p>}
+              </div>
+
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                 <label>
                   Full Name
