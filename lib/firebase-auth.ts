@@ -1,6 +1,6 @@
 "use client";
 
-import { onAuthStateChanged, signInAnonymously, signOut, type User } from "firebase/auth";
+import { onAuthStateChanged, signInAnonymously, signOut, GoogleAuthProvider, signInWithPopup, type User } from "firebase/auth";
 import { getFirebaseServices } from "@/lib/firebase";
 
 export function subscribeToAuth(callback: (user: User | null) => void) {
@@ -22,6 +22,18 @@ export async function signInGuest() {
   }
 
   const credential = await signInAnonymously(services.auth);
+  return credential.user;
+}
+
+export async function signInWithGoogle() {
+  const services = getFirebaseServices();
+
+  if (!services) {
+    return null;
+  }
+
+  const provider = new GoogleAuthProvider();
+  const credential = await signInWithPopup(services.auth, provider);
   return credential.user;
 }
 

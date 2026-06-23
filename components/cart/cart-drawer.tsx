@@ -1,7 +1,7 @@
 "use client";
 
-import { MessageCircle, Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
+import Link from "next/link";
 import { useCart } from "@/components/cart/cart-provider";
 
 function formatMoney(value: number) {
@@ -22,44 +22,7 @@ export function CartDrawer() {
     subtotal,
     total
   } = useCart();
-  const [customerName, setCustomerName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-
   const amountForFreeDelivery = Math.max(0, 500 - subtotal);
-
-  const checkoutUrl = useMemo(() => {
-    const orderLines = items
-      .map(
-        (item) =>
-          `${item.quantity}x ${item.sizeName} - ${item.flavorName} (${item.weightGrams}g) = Rs. ${
-            item.quantity * item.price
-          }`
-      )
-      .join("\n");
-    const deliveryLine = deliveryFee === 0 ? "Free delivery" : `Delivery: ${formatMoney(deliveryFee)}`;
-    const details = [
-      customerName ? `Name: ${customerName}` : "",
-      phone ? `Phone: ${phone}` : "",
-      address ? `Address: ${address}` : ""
-    ]
-      .filter(Boolean)
-      .join("\n");
-    const message = [
-      "Hi FuelBar, I want to place this order:",
-      "",
-      orderLines,
-      "",
-      `Subtotal: ${formatMoney(subtotal)}`,
-      deliveryLine,
-      `Total: ${formatMoney(total)}`,
-      details ? `\n${details}` : "",
-      "",
-      "Please confirm availability and payment details."
-    ].join("\n");
-
-    return `https://wa.me/916263099627?text=${encodeURIComponent(message)}`;
-  }, [address, customerName, deliveryFee, items, phone, subtotal, total]);
 
   return (
     <>
@@ -124,34 +87,6 @@ export function CartDrawer() {
               ))}
             </div>
 
-            <div className="cart-drawer__customer">
-              <label>
-                Name
-                <input
-                  onChange={(event) => setCustomerName(event.target.value)}
-                  placeholder="Full name"
-                  type="text"
-                  value={customerName}
-                />
-              </label>
-              <label>
-                Phone
-                <input
-                  onChange={(event) => setPhone(event.target.value)}
-                  placeholder="+91"
-                  type="tel"
-                  value={phone}
-                />
-              </label>
-              <label>
-                Address
-                <textarea
-                  onChange={(event) => setAddress(event.target.value)}
-                  placeholder="Flat, street, city, state, PIN"
-                  value={address}
-                />
-              </label>
-            </div>
 
             <div className="cart-summary">
               <div>
@@ -179,10 +114,9 @@ export function CartDrawer() {
             </p>
 
             <div className="cart-drawer__actions">
-              <a className="button button--primary" href={checkoutUrl} rel="noreferrer" target="_blank">
-                <MessageCircle size={18} />
-                WhatsApp checkout
-              </a>
+              <Link className="button button--primary" href="/checkout" onClick={closeCart}>
+                Proceed to Checkout
+              </Link>
               <button className="button button--ghost" onClick={clearCart} type="button">
                 Clear cart
               </button>

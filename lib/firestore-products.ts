@@ -32,3 +32,30 @@ export async function readProductsFromFirestore(): Promise<Product[] | null> {
 
   return firestoreProducts.length ? firestoreProducts : products;
 }
+
+export async function createProduct(productData: Product): Promise<void> {
+  const services = getFirebaseServices();
+  if (!services) throw new Error("Firebase not configured");
+  
+  const { doc, setDoc } = await import("firebase/firestore");
+  const productRef = doc(services.db, PRODUCTS_COLLECTION, productData.id);
+  await setDoc(productRef, productData);
+}
+
+export async function updateProduct(productId: string, updates: Partial<Product>): Promise<void> {
+  const services = getFirebaseServices();
+  if (!services) throw new Error("Firebase not configured");
+  
+  const { doc, updateDoc } = await import("firebase/firestore");
+  const productRef = doc(services.db, PRODUCTS_COLLECTION, productId);
+  await updateDoc(productRef, updates as any);
+}
+
+export async function deleteProduct(productId: string): Promise<void> {
+  const services = getFirebaseServices();
+  if (!services) throw new Error("Firebase not configured");
+  
+  const { doc, deleteDoc } = await import("firebase/firestore");
+  const productRef = doc(services.db, PRODUCTS_COLLECTION, productId);
+  await deleteDoc(productRef);
+}

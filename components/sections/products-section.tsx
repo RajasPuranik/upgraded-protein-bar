@@ -3,7 +3,7 @@
 import { ShoppingBag } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useCart } from "@/components/cart/cart-provider";
-import { ProductVisual } from "@/components/sections/product-visual";
+import { ProductCard } from "@/components/product-card";
 import { readProductsFromFirestore } from "@/lib/firestore-products";
 import {
   flavorOptions,
@@ -72,53 +72,9 @@ export function ProductsSection() {
       </div>
 
       <div className="product-grid">
-        {visibleProducts.map((product) => {
-          const proteinFill = Math.min(100, Math.round((product.proteinGrams / 25) * 100));
-          const calorieFill = Math.min(100, Math.round((product.calories / 290) * 100));
-
-          return (
-            <article className="product-card" key={product.id}>
-              {product.badge ? <span className="product-card__badge">{product.badge}</span> : null}
-              <div className="product-card__visual">
-                <ProductVisual flavorKey={product.flavorKey} sizeKey={product.sizeKey} />
-              </div>
-              <div className="product-card__body">
-                <span className="product-card__meta">
-                  {product.weightGrams}g - {product.flavorName}
-                </span>
-                <h3>{product.sizeName}</h3>
-                <p>{product.description}</p>
-
-                <div className="meter">
-                  <div>
-                    <span>Protein</span>
-                    <strong>{product.proteinGrams}g</strong>
-                  </div>
-                  <div className="meter__track">
-                    <span style={{ width: `${proteinFill}%` }} />
-                  </div>
-                </div>
-                <div className="meter meter--energy">
-                  <div>
-                    <span>Energy</span>
-                    <strong>{product.calories} kcal</strong>
-                  </div>
-                  <div className="meter__track">
-                    <span style={{ width: `${calorieFill}%` }} />
-                  </div>
-                </div>
-
-                <div className="product-card__footer">
-                  <strong>{formatMoney(product.price)}</strong>
-                  <button className="button button--primary" onClick={() => addItem(product)} type="button">
-                    <ShoppingBag size={18} />
-                    Add
-                  </button>
-                </div>
-              </div>
-            </article>
-          );
-        })}
+        {visibleProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
     </section>
   );

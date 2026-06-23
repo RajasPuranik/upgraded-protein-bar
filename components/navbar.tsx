@@ -3,6 +3,8 @@
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/components/cart/cart-provider";
+import { useAuth } from "@/components/auth-provider";
+import Link from "next/link";
 
 const navLinks = [
   { href: "#products", label: "Products" },
@@ -14,6 +16,7 @@ const navLinks = [
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { itemCount, openCart } = useCart();
+  const { user, loading, signIn } = useAuth();
 
   return (
     <header className="navbar">
@@ -35,6 +38,15 @@ export function Navbar() {
           Cart
           {itemCount > 0 ? <span className="button__count">{itemCount}</span> : null}
         </button>
+        {loading ? null : user ? (
+          <Link className="button button--small button--secondary" href="/account/orders">
+            Account
+          </Link>
+        ) : (
+          <button className="button button--small button--secondary" onClick={signIn} type="button">
+            Login
+          </button>
+        )}
         <button
           aria-label="Open navigation"
           className="icon-button navbar__menu-button"
