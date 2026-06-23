@@ -6,13 +6,14 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata(
-  { params }: Props,
+  props: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const params = await props.params;
   const products = await readProductsFromFirestore();
   const product = products?.find(p => p.id === params.id);
 
@@ -33,7 +34,8 @@ export async function generateMetadata(
   };
 }
 
-export default async function ProductPage({ params }: Props) {
+export default async function ProductPage(props: Props) {
+  const params = await props.params;
   const products = await readProductsFromFirestore();
   const product = products?.find(p => p.id === params.id);
 
