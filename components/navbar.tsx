@@ -44,7 +44,7 @@ export function Navbar() {
             Account
           </Link>
         ) : (
-          <Link className="button button--small button--secondary" href="/login">
+          <Link className="button button--small button--login" href="/login">
             Login
           </Link>
         )}

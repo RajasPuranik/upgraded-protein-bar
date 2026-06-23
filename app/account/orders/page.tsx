@@ -47,7 +47,7 @@ function OrdersContent() {
   }
 
   return (
-    <div className="section-band" style={{ paddingTop: '120px', minHeight: '80vh', maxWidth: '1000px', margin: '0 auto' }}>
+    <div>
       {isSuccess && (
         <div style={{ background: 'rgba(50, 205, 50, 0.1)', border: '1px solid #32cd32', color: '#32cd32', padding: '15px', borderRadius: '8px', marginBottom: '30px' }}>
           🎉 Payment Successful! Your order has been placed.
@@ -57,7 +57,7 @@ function OrdersContent() {
       <h2 style={{ marginBottom: '30px' }}>Your Orders</h2>
 
       {orders.length === 0 ? (
-        <div style={{ textAlign: 'center', background: 'var(--surface-color)', padding: '50px', borderRadius: '16px' }}>
+        <div style={{ textAlign: 'center', background: 'rgba(255,255,255,0.02)', padding: '50px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.05)' }}>
           <p style={{ marginBottom: '20px' }}>You haven't placed any orders yet.</p>
           <Link href="/#products" className="button button--primary">Shop Now</Link>
         </div>

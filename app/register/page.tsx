@@ -30,7 +30,11 @@ export default function RegisterPage() {
       await registerWithEmail(email, password, fullName);
       router.push("/account/orders");
     } catch (err: any) {
-      setError(err.message || "Failed to create account. Please try again.");
+      if (err.code === "auth/email-already-in-use") {
+        setError("This email is already registered. Please sign in instead.");
+      } else {
+        setError(err.message || "Failed to create account. Please try again.");
+      }
       setIsSubmitting(false);
     }
   };

@@ -132,6 +132,16 @@ svg {
   border-color: #ffffff;
 }
 
+.button--login {
+  background: rgba(104, 216, 194, 0.1); /* Subtle teal background */
+  color: var(--teal);
+  border-color: rgba(104, 216, 194, 0.3);
+}
+
+.button--login:hover {
+  background: rgba(104, 216, 194, 0.2);
+}
+
 .button--ghost {
   background: rgba(255, 255, 255, 0.04);
   border-color: var(--line);
