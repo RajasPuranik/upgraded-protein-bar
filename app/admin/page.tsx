@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { getAllOrders, type Order } from "@/lib/firestore-orders";
-import { formatMoney } from "@/lib/utils"; // Wait, I need to create this or just inline it
 import { IndianRupee, ShoppingCart, Clock } from "lucide-react";
 
 export default function AdminDashboard() {
