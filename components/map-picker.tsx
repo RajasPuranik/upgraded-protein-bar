@@ -76,10 +76,29 @@ export default function MapPicker({ position, setPosition }: MapPickerProps) {
         type="button" 
         onClick={handleLocate}
         disabled={locating}
-        className="button button--secondary button--small"
-        style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1000 }}
+        style={{ 
+          position: 'absolute', 
+          bottom: '20px', 
+          right: '20px', 
+          zIndex: 1000,
+          background: 'var(--mango)',
+          color: '#000',
+          border: 'none',
+          padding: '10px 16px',
+          borderRadius: '24px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          fontWeight: 'bold',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+          cursor: locating ? 'not-allowed' : 'pointer',
+          opacity: locating ? 0.7 : 1,
+          transition: 'transform 0.2s'
+        }}
+        onMouseOver={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+        onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}
       >
-        <LocateFixed size={16} />
+        <LocateFixed size={18} />
         {locating ? "Locating..." : "Locate Me"}
       </button>
 

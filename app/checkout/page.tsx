@@ -151,47 +151,27 @@ export default function CheckoutPage() {
             <form onSubmit={proceedToPayment} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
               <h3>Shipping Details</h3>
               
-              <div style={{ marginBottom: '10px' }}>
+              <div style={{ marginBottom: '20px' }}>
                 <label style={{ display: 'block', marginBottom: '10px' }}>Pin your delivery location</label>
                 <MapPicker position={position} setPosition={setPosition} />
                 {!position && <p style={{ color: 'var(--primary-color)', fontSize: '0.85rem', marginTop: '5px' }}>Click on the map to set your location.</p>}
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
-                <label>
-                  Full Name
-                  <input required type="text" name="fullName" value={address.fullName} onChange={handleChange} disabled={!user} />
+                <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <span>Full Name</span>
+                  <input className="input-field" required type="text" name="fullName" value={address.fullName} onChange={handleChange} disabled={!user} />
                 </label>
-                <label>
-                  Phone
-                  <input required type="tel" name="phone" value={address.phone} onChange={handleChange} disabled={!user} />
-                </label>
-              </div>
-
-              <label>
-                Email
-                <input required type="email" name="email" value={address.email} onChange={handleChange} disabled={!user} />
-              </label>
-
-              <label>
-                Street Address
-                <input required type="text" name="street" value={address.street} onChange={handleChange} disabled={!user} />
-              </label>
-
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '15px' }}>
-                <label>
-                  City
-                  <input required type="text" name="city" value={address.city} onChange={handleChange} disabled={!user} />
-                </label>
-                <label>
-                  State
-                  <input required type="text" name="state" value={address.state} onChange={handleChange} disabled={!user} />
-                </label>
-                <label>
-                  PIN Code
-                  <input required type="text" name="pincode" value={address.pincode} onChange={handleChange} disabled={!user} />
+                <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <span>Phone</span>
+                  <input className="input-field" required type="tel" name="phone" value={address.phone} onChange={handleChange} disabled={!user} />
                 </label>
               </div>
+
+              <label style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '15px' }}>
+                <span>Email</span>
+                <input className="input-field" required type="email" name="email" value={address.email} onChange={handleChange} disabled={!user} />
+              </label>
 
               <button 
                 className="button button--primary" 
@@ -203,33 +183,41 @@ export default function CheckoutPage() {
               </button>
             </form>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <h3>Pay with GPay / UPI</h3>
-              <p>Scan the QR code or tap the button below to pay <strong>{formatMoney(total)}</strong>.</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'center', textAlign: 'center', background: 'var(--surface-strong)', padding: '30px', borderRadius: '16px' }}>
+              <div>
+                <h3 style={{ margin: '0 0 8px 0' }}>Pay with UPI</h3>
+                <p style={{ margin: 0, color: 'var(--muted)' }}>Scan the QR code with any UPI app to pay <strong>{formatMoney(total)}</strong>.</p>
+              </div>
               
-              <div style={{ background: 'white', padding: '20px', borderRadius: '12px', alignSelf: 'flex-start' }}>
-                <QRCodeSVG value={upiUrl} size={200} />
+              <div style={{ background: 'white', padding: '24px', borderRadius: '16px', boxShadow: '0 8px 32px rgba(0,0,0,0.4)', display: 'inline-block' }}>
+                <QRCodeSVG value={upiUrl} size={220} />
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '15px', width: '100%' }}>
+                <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', flex: 1 }} />
+                <span style={{ color: 'var(--muted)', fontSize: '0.85rem', fontWeight: 600 }}>OR TAP TO PAY</span>
+                <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', flex: 1 }} />
               </div>
 
               <a 
                 href={upiUrl}
                 className="button button--primary"
-                style={{ width: 'fit-content' }}
+                style={{ width: '100%', maxWidth: '300px', height: '48px', fontSize: '1.1rem' }}
               >
-                Pay with GPay app
+                Open GPay / PhonePe App
               </a>
 
-              <form onSubmit={handleVerifyOrder} style={{ marginTop: '20px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px' }}>
-                <label>
-                  Enter 12-digit UTR / Transaction ID (after paying)
+              <form onSubmit={handleVerifyOrder} style={{ width: '100%', marginTop: '10px', textAlign: 'left' }}>
+                <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <span>Enter 12-digit UTR / Transaction ID (after paying)</span>
                   <input 
+                    className="input-field"
                     required 
                     type="text" 
                     value={utrNumber} 
                     onChange={e => setUtrNumber(e.target.value)} 
                     placeholder="e.g. 301234567890"
                     disabled={isProcessing}
-                    style={{ marginTop: '10px' }}
                   />
                 </label>
 

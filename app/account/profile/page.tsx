@@ -116,7 +116,7 @@ export default function ProfilePage() {
               type="email" 
               value={user.email || ""} 
               disabled 
-              style={{ padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', color: 'rgba(255,255,255,0.5)' }} 
+              className="input-field"
             />
           </div>
 
@@ -127,43 +127,22 @@ export default function ProfilePage() {
               value={displayName} 
               onChange={e => setDisplayName(e.target.value)} 
               required
-              style={{ padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white' }} 
+              className="input-field"
             />
           </div>
         </div>
 
-        <h3 style={{ marginTop: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '10px' }}>Delivery Address</h3>
+        <h3 style={{ marginTop: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '10px' }}>Delivery Details</h3>
 
         <div style={{ marginBottom: '10px' }}>
           <label style={{ display: 'block', marginBottom: '10px', color: 'var(--muted)' }}>Default delivery location (Map)</label>
           <MapPicker position={position} setPosition={setPosition} />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
-          <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <span style={{ color: 'var(--muted)' }}>Phone Number</span>
-            <input required type="tel" name="phone" value={address.phone} onChange={handleChange} style={{ padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
-          </label>
-          <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <span style={{ color: 'var(--muted)' }}>Street Address</span>
-            <input required type="text" name="street" value={address.street} onChange={handleChange} style={{ padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
-          </label>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '15px' }}>
-          <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <span style={{ color: 'var(--muted)' }}>City</span>
-            <input required type="text" name="city" value={address.city} onChange={handleChange} style={{ padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
-          </label>
-          <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <span style={{ color: 'var(--muted)' }}>State</span>
-            <input required type="text" name="state" value={address.state} onChange={handleChange} style={{ padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
-          </label>
-          <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <span style={{ color: 'var(--muted)' }}>PIN Code</span>
-            <input required type="text" name="pincode" value={address.pincode} onChange={handleChange} style={{ padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
-          </label>
-        </div>
+        <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <span style={{ color: 'var(--muted)' }}>Phone Number</span>
+          <input className="input-field" required type="tel" name="phone" value={address.phone} onChange={handleChange} />
+        </label>
 
         <button type="submit" className="button button--primary" disabled={isSaving} style={{ width: 'fit-content', marginTop: '20px' }}>
           {isSaving ? "Saving..." : "Save Profile & Address"}

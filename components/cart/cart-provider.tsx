@@ -64,19 +64,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(CART_STORAGE_KEY);
-      if (saved) {
-        setItems(JSON.parse(saved));
-      }
-    } catch {
-      setItems([]);
-    }
+    // Cart is now strictly in-memory per user request to clear on refresh
+    setItems([]);
   }, []);
-
-  useEffect(() => {
-    window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
-  }, [items]);
 
   const addItem = useCallback((product: Product) => {
     setItems((currentItems) => {
