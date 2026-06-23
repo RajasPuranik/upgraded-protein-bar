@@ -15,12 +15,16 @@ const ingredients = [
 export function IngredientsSection() {
   return (
     <section className="ingredients section-band" id="ingredients">
-      <div className="ingredients__visual" aria-hidden="true">
-        <ProductVisual flavorKey="chocolate-hazelnut" sizeKey="beast" />
-        <span style={{ left: "6%", top: "12%" }}>Dark chocolate</span>
-        <span style={{ right: "4%", top: "18%" }}>Dates</span>
-        <span style={{ left: "2%", bottom: "22%" }}>Hazelnut</span>
-        <span style={{ right: "8%", bottom: "16%" }}>Honey</span>
+      <div className="ingredients__visual" aria-hidden="true" style={{ position: 'relative' }}>
+        <img 
+          src="/fuelbar-product-hero.png" 
+          alt="FuelBar Ingredients" 
+          style={{ width: '80%', height: '80%', objectFit: 'contain', zIndex: 1 }} 
+        />
+        <span style={{ left: "15%", top: "20%", zIndex: 2 }}>Dark chocolate</span>
+        <span style={{ right: "15%", top: "25%", zIndex: 2 }}>Dates</span>
+        <span style={{ left: "15%", bottom: "20%", zIndex: 2 }}>Hazelnut</span>
+        <span style={{ right: "15%", bottom: "25%", zIndex: 2 }}>Honey</span>
       </div>
       <div className="ingredients__copy">
         <span className="eyebrow">Ingredients</span>

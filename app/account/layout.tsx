@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { LogOut, User, Package } from "lucide-react";
 
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
-  const { user, loading, signOutUser } = useAuth();
+  const { user, loading, signOut } = useAuth();
   const pathname = usePathname();
 
   if (loading) {
@@ -39,7 +39,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
         </Link>
         
         <button 
-          onClick={signOutUser} 
+          onClick={signOut} 
           style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px', borderRadius: '8px', textDecoration: 'none', background: 'transparent', color: 'var(--danger-color)', border: 'none', cursor: 'pointer', textAlign: 'left', marginTop: 'auto' }}
         >
           <LogOut size={18} /> Sign Out
