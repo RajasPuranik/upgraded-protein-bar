@@ -1,5 +1,4 @@
 import { CheckCircle2 } from "lucide-react";
-import { ProductVisual } from "@/components/sections/product-visual";
 
 const ingredients = [
   "Dark chocolate",

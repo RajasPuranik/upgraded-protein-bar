@@ -2,9 +2,9 @@
 
 import { ShoppingBag, Plus, Minus } from "lucide-react";
 import { useCart } from "@/components/cart/cart-provider";
-import { ProductVisual } from "@/components/sections/product-visual";
 import type { Product } from "@/lib/products";
 import Link from "next/link";
+import Image from "next/image";
 
 function formatMoney(value: number) {
   return `Rs. ${value}`;
@@ -23,8 +23,14 @@ export function ProductCard({ product }: { product: Product }) {
       {product.badge ? <span className="product-card__badge">{product.badge}</span> : null}
       
       <Link href={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
-        <div className="product-card__visual">
-          <ProductVisual flavorKey={product.flavorKey} sizeKey={product.sizeKey} />
+        <div className="product-card__visual" style={{ padding: '15px' }}>
+          <Image 
+            src={`/product-${product.flavorKey}.png`} 
+            alt={product.flavorName} 
+            width={300} 
+            height={150} 
+            style={{ width: '100%', height: 'auto', objectFit: 'cover', borderRadius: '8px' }} 
+          />
         </div>
       </Link>
 
