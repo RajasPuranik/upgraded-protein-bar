@@ -126,6 +126,12 @@ svg {
   color: #14140d;
 }
 
+.button--secondary {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
 .button--ghost {
   background: rgba(255, 255, 255, 0.04);
   border-color: var(--line);

@@ -3,12 +3,14 @@
 import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
 import Link from "next/link";
 import { useCart } from "@/components/cart/cart-provider";
+import { useAuth } from "@/components/auth-provider";
 
 function formatMoney(value: number) {
   return `Rs. ${value}`;
 }
 
 export function CartDrawer() {
+  const { user } = useAuth();
   const {
     clearCart,
     closeCart,
@@ -114,7 +116,7 @@ export function CartDrawer() {
             </p>
 
             <div className="cart-drawer__actions">
-              <Link className="button button--primary" href="/checkout" onClick={closeCart}>
+              <Link className="button button--primary" href={user ? "/checkout" : "/login"} onClick={closeCart}>
                 Proceed to Checkout
               </Link>
               <button className="button button--ghost" onClick={clearCart} type="button">
